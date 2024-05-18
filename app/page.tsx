@@ -1,15 +1,22 @@
-import { CryptoPriceCard } from "@/components/HomeComponents/cryptoPriceCard";
+"use client"
+import React, { useEffect, useState } from "react";
+import { useCoinData } from "@/config/coinDataFetcher";
+import CryptoPriceCard from "@/components/HomeComponents/cryptoPriceCard";
 import { Features } from "@/components/HomeComponents/features";
 import { Hero } from "@/components/HomeComponents/hero";
 import { MarketUpdate } from "@/components/HomeComponents/marketUpdate";
 
-export default function Home() {
+const Home: React.FC = () => {
+  const coinData = useCoinData()
+
   return (
-    <main className="flex min-h-screen flex-col justify-between p-5" id="home-containet">
+    <main className="flex min-h-screen flex-col justify-between p-5">
       <Hero />
-      <CryptoPriceCard />
+      <CryptoPriceCard coinData={coinData} />
       <Features />
       <MarketUpdate />
     </main>
   );
-}
+};
+
+export default Home;
