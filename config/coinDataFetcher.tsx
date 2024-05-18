@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-interface CoinData {
+export interface CoinData {
   id: number;
   icon: string;
   name: string;
@@ -8,6 +8,8 @@ interface CoinData {
   price: string;
   sale: string;
   class: string;
+  symbol: string;
+  change: string;
 }
 
 export const useCoinData = () => {
@@ -18,18 +20,24 @@ export const useCoinData = () => {
       try {
         const response = await fetch("https://ultronxchange.io/api/v1/home-page/");
         const data = await response.json();
+        const coinPairs = ["ULC-USDT", "UARC-USDT", "BTC-USDT", "ETH-USDT", "BNB-USDT", "MATIC-USDT", "TRX-USDT"];
 
-        const processedCoinData = Object.entries(data.pairs_data).map(([pair, pairData]: [string, any], index) => ({
-          id: index + 1,
-          icon: `@/assets/images/coin/${pair.split("-")[0].toLowerCase()}.png`,
-          name: pair.split("-")[0],
-          unit: pair.split("-")[1],
-          price: pairData.price,
-          sale: `${pairData.price_24h.toFixed(2)}%`,
-          class: pairData.price_24h < 0 ? "down" : "up",
-        }));
+        const newData: CoinData[] = coinPairs.map((pair, index) => {
+          const pairData = data.pairs_data[pair];
+          return {
+            id: index + 1,
+            icon: `/public/assets/images/coin/${pair.split("-")[0].toLowerCase()}.png`,
+            name: pair.split("-")[0],
+            unit: pair.split("-")[0],
+            price: pairData.price.toString(),
+            sale: `${pairData.price_24h.toFixed(2)}%`,
+            class: pairData.price_24h < 0 ? "down" : "up",
+            symbol: pairData.pair_data.base.code,
+            change: `${pairData.price_24h}%`,
+          };
+        });
 
-        setCoinData(processedCoinData);
+        setCoinData(newData);
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
@@ -37,7 +45,7 @@ export const useCoinData = () => {
 
     fetchData();
 
-    const intervalId = setInterval(fetchData, 1000);
+    const intervalId = setInterval(fetchData, 10000);
 
     return () => clearInterval(intervalId);
   }, []);
