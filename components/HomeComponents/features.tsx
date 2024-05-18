@@ -37,7 +37,7 @@ export function Features() {
           Trading
         </h2>
         <p className="mt-6 text-lg text-gray-500 dark:text-gray-400 leading-relaxed md:text-xl">
-          UltronX offers a secure and user-friendly platform for all your
+          CeX offers a secure and user-friendly platform for all your
           cryptocurrency needs, empowering you to manage your digital assets
           with confidence. Our cutting-edge technology and robust security
           measures ensure your investments are in safe hands.

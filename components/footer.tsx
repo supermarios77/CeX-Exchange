@@ -9,7 +9,7 @@ export default function Component() {
           <div className="flex flex-col items-start gap-4">
             <Link className="flex items-center gap-2" href="#">
               <MountainIcon className="h-6 w-6 text-gray-900 dark:text-gray-50" />
-              <span className="text-lg font-semibold text-gray-900 dark:text-gray-50">UltronX Exchange</span>
+              <span className="text-lg font-semibold text-gray-900 dark:text-gray-50">CeX Exchange</span>
             </Link>
             <p className="text-gray-500 dark:text-gray-400 text-sm">
               Experience the future of finance with our cutting-edge cryptocurrency exchange.
@@ -108,7 +108,7 @@ export default function Component() {
           </div>
         </div>
         <div className="mt-12 md:mt-16 lg:mt-20 border-t border-gray-200 dark:border-gray-700 pt-6 md:pt-8 lg:pt-10 text-center">
-          <p className="text-gray-500 dark:text-gray-400 text-sm">© 2024 UltronX Exchange. All rights reserved.</p>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">© 2024 CeX Exchange. All rights reserved.</p>
         </div>
       </div>
     </section>

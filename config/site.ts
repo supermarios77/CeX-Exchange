@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "UltronX Exchange",
+  name: "CeX Exchange",
   description: "",
   navItems: [
     {

@@ -16,7 +16,7 @@ export function NavBar() {
         href="#"
       >
         <MountainIcon className="h-6 w-6" />
-        <span className="">UltronX Exchange</span>
+        <span className="">CeX Exchange</span>
       </Link>
       <nav className="hidden items-center gap-6 md:flex">
         {siteConfig.navItems.map((item) => (

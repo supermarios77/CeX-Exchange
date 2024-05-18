@@ -1,4 +1,3 @@
-import Footer from "@/components/footer";
 import { CryptoPriceCard } from "@/components/HomeComponents/cryptoPriceCard";
 import { Features } from "@/components/HomeComponents/features";
 import { Hero } from "@/components/HomeComponents/hero";
