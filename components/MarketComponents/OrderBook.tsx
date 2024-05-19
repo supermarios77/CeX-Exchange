@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { Button } from '../ui/button';
-import { FilterIcon } from '@/config/icons';
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '../ui/table';
+import React, { useState, useEffect } from "react";
+import { Button } from "../ui/button";
+import { FilterIcon } from "@/config/icons";
 
 interface Order {
   price: string;
@@ -20,7 +19,7 @@ const OrderBook = () => {
       try {
         const coreUrl = process.env.NEXT_PUBLIC_CORE_URL;
         if (!coreUrl) {
-          throw new Error('Core URL is not defined');
+          throw new Error("Core URL is not defined");
         }
 
         const response = await fetch(`${coreUrl}/api/schema/swagger-ui/`);
@@ -28,7 +27,7 @@ const OrderBook = () => {
         setBuyOrders(data.buyOrders);
         setSellOrders(data.sellOrders);
       } catch (error) {
-        console.error('Error fetching order data:', error);
+        console.error("Error fetching order data:", error);
       }
     };
 
@@ -36,55 +35,41 @@ const OrderBook = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4 border-r bg-gray-100/40 p-4 dark:bg-card">
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold">Order Book</h2>
-        <Button size="icon" variant="ghost">
-          <FilterIcon className="h-5 w-5" />
-        </Button>
-      </div>
-      <div className="flex-1 overflow-auto">
-        <div className="mb-4">
-          <h3 className="text-md font-semibold">Buy Orders</h3>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Price</TableHead>
-                <TableHead>Amount</TableHead>
-                <TableHead>Total</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {buyOrders.map((order, index) => (
-                <TableRow key={index}>
-                  <TableCell>{order.price}</TableCell>
-                  <TableCell>{order.amount}</TableCell>
-                  <TableCell>{order.total}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+    <div className="bg-white rounded-lg shadow-sm dark:bg-card">
+      <div className="px-4 py-3 border-b dark:border-accent">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold">Orderbook</h3>
+          <Button size="sm" variant="ghost">
+            <FilterIcon className="h-5 w-5" />
+            <span className="sr-only">Filter</span>
+          </Button>
         </div>
-        <div>
-          <h3 className="text-md font-semibold">Sell Orders</h3>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Price</TableHead>
-                <TableHead>Amount</TableHead>
-                <TableHead>Total</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {sellOrders.map((order, index) => (
-                <TableRow key={index}>
-                  <TableCell>{order.price}</TableCell>
-                  <TableCell>{order.amount}</TableCell>
-                  <TableCell>{order.total}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+      </div>
+      <div className="p-4 space-y-4">
+        <div className="grid grid-cols-3 text-sm font-medium text-gray-500 dark:text-gray-400">
+          <div>Price (USDT)</div>
+          <div className="text-right">Amount (BTC)</div>
+          <div className="text-right">Total (USDT)</div>
+        </div>
+        <div className="grid grid-cols-3 text-sm font-medium text-red-500">
+          <div>59,800.00</div>
+          <div className="text-right">0.5000</div>
+          <div className="text-right">29,900.00</div>
+        </div>
+        <div className="grid grid-cols-3 text-sm font-medium text-red-500">
+          <div>59,750.00</div>
+          <div className="text-right">0.2500</div>
+          <div className="text-right">14,937.50</div>
+        </div>
+        <div className="grid grid-cols-3 text-sm font-medium text-green-500">
+          <div>59,700.00</div>
+          <div className="text-right">0.1000</div>
+          <div className="text-right">5,970.00</div>
+        </div>
+        <div className="grid grid-cols-3 text-sm font-medium text-green-500">
+          <div>59,650.00</div>
+          <div className="text-right">0.0750</div>
+          <div className="text-right">4,473.75</div>
         </div>
       </div>
     </div>

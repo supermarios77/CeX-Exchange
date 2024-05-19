@@ -66,14 +66,7 @@ const TradingChart = () => {
     <div
       id="tv_chart_container"
       ref={chartContainerRef}
-      style={{
-        height: '600px',
-        width: '100%',
-        border: '1px solid #ccc',
-        borderRadius: '8px',
-        overflow: 'hidden',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
-      }}
+      className='p-4 h-[400px] md:h-[500px] bg-white rounded-lg shadow-sm dark:bg-card col-span-1 md:col-span-2 px-4 py-3 border-b dark:border-accent flex items-center justify-between'
     />
   );
 };
