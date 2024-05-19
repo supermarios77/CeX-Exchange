@@ -3,6 +3,11 @@ import React from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 
+import eth from "@/public/assets/images/coin/eth.png";
+import btc from "@/public/assets/images/coin/btc.png";
+import matic from "@/public/assets/images/coin/matic.png";
+import bnb from "@/public/assets/images/coin/bnb.png";
+
 const Pairs = () => {
   return (
     <div className="bg-white rounded-lg shadow-sm dark:bg-card">
@@ -25,7 +30,7 @@ const Pairs = () => {
             <Image
               alt="BTC"
               height={24}
-              src="/placeholder.svg"
+              src={btc}
               style={{
                 aspectRatio: "24/24",
                 objectFit: "cover",
@@ -44,7 +49,7 @@ const Pairs = () => {
             <Image
               alt="ETH"
               height={24}
-              src="/placeholder.svg"
+              src={eth}
               style={{
                 aspectRatio: "24/24",
                 objectFit: "cover",
@@ -61,16 +66,16 @@ const Pairs = () => {
         <div className="grid grid-cols-5 items-center text-sm font-medium">
           <div className="flex items-center gap-2">
             <Image
-              alt="USDT"
+              alt="BNB"
               height={24}
-              src="/placeholder.svg"
+              src={bnb}
               style={{
                 aspectRatio: "24/24",
                 objectFit: "cover",
               }}
               width={24}
             />
-            <span>USDT</span>
+            <span>BNB</span>
           </div>
           <div className="text-right">1.00</div>
           <div className="text-right">50,000.00</div>
@@ -80,16 +85,16 @@ const Pairs = () => {
         <div className="grid grid-cols-5 items-center text-sm font-medium">
           <div className="flex items-center gap-2">
             <Image
-              alt="LTC"
+              alt="matic"
               height={24}
-              src="/placeholder.svg"
+              src={matic}
               style={{
                 aspectRatio: "24/24",
                 objectFit: "cover",
               }}
               width={24}
             />
-            <span>LTC</span>
+            <span>MATIC</span>
           </div>
           <div className="text-right">180.00</div>
           <div className="text-right">1,000.00</div>

@@ -3,6 +3,11 @@ import React from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 
+import eth from "@/public/assets/images/coin/eth.png";
+import btc from "@/public/assets/images/coin/btc.png";
+import matic from "@/public/assets/images/coin/matic.png";
+import bnb from "@/public/assets/images/coin/bnb.png";
+
 const Wallet = () => {
   return (
     <div className="bg-white rounded-lg shadow-sm dark:bg-card col-span-1 md:col-span-3">
@@ -26,7 +31,7 @@ const Wallet = () => {
               <Image
                 alt="BTC"
                 height={24}
-                src="/placeholder.svg"
+                src={btc}
                 style={{
                   aspectRatio: "24/24",
                   objectFit: "cover",
@@ -48,7 +53,7 @@ const Wallet = () => {
               <Image
                 alt="ETH"
                 height={24}
-                src="/placeholder.svg"
+                src={eth}
                 style={{
                   aspectRatio: "24/24",
                   objectFit: "cover",
@@ -68,16 +73,16 @@ const Wallet = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Image
-                alt="USDT"
+                alt="matic"
                 height={24}
-                src="/placeholder.svg"
+                src={matic}
                 style={{
                   aspectRatio: "24/24",
                   objectFit: "cover",
                 }}
                 width={24}
               />
-              <span className="font-medium">USDT</span>
+              <span className="font-medium">MATIC</span>
             </div>
             <div className="text-gray-500 font-medium">0.0%</div>
           </div>
@@ -90,16 +95,16 @@ const Wallet = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Image
-                alt="LTC"
+                alt="bnb"
                 height={24}
-                src="/placeholder.svg"
+                src={bnb}
                 style={{
                   aspectRatio: "24/24",
                   objectFit: "cover",
                 }}
                 width={24}
               />
-              <span className="font-medium">LTC</span>
+              <span className="font-medium">BNB</span>
             </div>
             <div className="text-green-500 font-medium">+0.8%</div>
           </div>
