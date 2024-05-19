@@ -18,7 +18,7 @@ import {
 
 const OpenOrders = () => {
   return (
-    <div className="col-span-2 flex flex-col gap-4 border-t bg-gray-100/40 p-4 dark:bg-gray-800/40">
+    <div className="flex flex-col gap-4  bg-gray-100/40 p-4 dark:bg-card">
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold">Open Orders</h2>
         <Button size="icon" variant="ghost">
