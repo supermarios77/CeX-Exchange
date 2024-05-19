@@ -1,6 +1,6 @@
-import { FilterIcon, ListIcon } from "@/config/icons";
 import React from "react";
 import { Button } from "../ui/button";
+import { FilterIcon, ListIcon } from "@/config/icons";
 import Image from "next/image";
 
 import eth from "@/public/assets/images/coin/eth.png";
@@ -9,8 +9,15 @@ import matic from "@/public/assets/images/coin/matic.png";
 import bnb from "@/public/assets/images/coin/bnb.png";
 
 const Pairs = () => {
+  const pairsData = [
+    { name: "BTC", price: "59,800.00", volume: "10,000.00", change: "+2.5%", total: "$29,900.00", image: btc },
+    { name: "ETH", price: "1,800.00", volume: "5,000.00", change: "-1.2%", total: "$4,500.00", image: eth },
+    { name: "BNB", price: "1.00", volume: "50,000.00", change: "0.0%", total: "$50,000.00", image: bnb },
+    { name: "MATIC", price: "180.00", volume: "1,000.00", change: "+0.8%", total: "$9,000.00", image: matic },
+  ];
+
   return (
-    <div className="bg-white rounded-lg shadow-sm dark:bg-card">
+    <div className="bg-white rounded-lg shadow-sm dark:bg-card md:h-full">
       <div className="px-4 py-3 border-b dark:border-accent flex items-center justify-between">
         <h3 className="text-lg font-semibold">Pairs</h3>
         <div className="flex items-center gap-2">
@@ -25,82 +32,27 @@ const Pairs = () => {
         </div>
       </div>
       <div className="p-4 space-y-4">
-        <div className="grid grid-cols-5 items-center text-sm font-medium">
-          <div className="flex items-center gap-2">
-            <Image
-              alt="BTC"
-              height={24}
-              src={btc}
-              style={{
-                aspectRatio: "24/24",
-                objectFit: "cover",
-              }}
-              width={24}
-            />
-            <span>BTC</span>
+        {pairsData.map((pair, index) => (
+          <div key={index} className="grid grid-cols-5 items-center text-sm font-medium">
+            <div className="flex items-center gap-2">
+              <Image
+                alt={pair.name}
+                height={24}
+                src={pair.image}
+                style={{
+                  aspectRatio: "24/24",
+                  objectFit: "cover",
+                }}
+                width={24}
+              />
+              <span>{pair.name}</span>
+            </div>
+            <div className="text-right">{pair.price}</div>
+            <div className="text-right">{pair.volume}</div>
+            <div className={`text-right ${pair.change.includes("-") ? 'text-red-500' : 'text-green-500'}`}>{pair.change}</div>
+            <div className="text-right">{pair.total}</div>
           </div>
-          <div className="text-right">59,800.00</div>
-          <div className="text-right">10,000.00</div>
-          <div className="text-right text-green-500">+2.5%</div>
-          <div className="text-right">$29,900.00</div>
-        </div>
-        <div className="grid grid-cols-5 items-center text-sm font-medium">
-          <div className="flex items-center gap-2">
-            <Image
-              alt="ETH"
-              height={24}
-              src={eth}
-              style={{
-                aspectRatio: "24/24",
-                objectFit: "cover",
-              }}
-              width={24}
-            />
-            <span>ETH</span>
-          </div>
-          <div className="text-right">1,800.00</div>
-          <div className="text-right">5,000.00</div>
-          <div className="text-right text-red-500">-1.2%</div>
-          <div className="text-right">$4,500.00</div>
-        </div>
-        <div className="grid grid-cols-5 items-center text-sm font-medium">
-          <div className="flex items-center gap-2">
-            <Image
-              alt="BNB"
-              height={24}
-              src={bnb}
-              style={{
-                aspectRatio: "24/24",
-                objectFit: "cover",
-              }}
-              width={24}
-            />
-            <span>BNB</span>
-          </div>
-          <div className="text-right">1.00</div>
-          <div className="text-right">50,000.00</div>
-          <div className="text-right text-gray-500">0.0%</div>
-          <div className="text-right">$50,000.00</div>
-        </div>
-        <div className="grid grid-cols-5 items-center text-sm font-medium">
-          <div className="flex items-center gap-2">
-            <Image
-              alt="matic"
-              height={24}
-              src={matic}
-              style={{
-                aspectRatio: "24/24",
-                objectFit: "cover",
-              }}
-              width={24}
-            />
-            <span>MATIC</span>
-          </div>
-          <div className="text-right">180.00</div>
-          <div className="text-right">1,000.00</div>
-          <div className="text-right text-green-500">+0.8%</div>
-          <div className="text-right">$9,000.00</div>
-        </div>
+        ))}
       </div>
     </div>
   );
