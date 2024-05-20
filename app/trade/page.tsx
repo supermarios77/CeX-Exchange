@@ -1,30 +1,30 @@
-import React from 'react';
+import React from "react";
 import TradingChart from "@/components/MarketComponents/TradingChart";
-import Pairs from "@/components/MarketComponents/Pairs";
-import BuySell from '@/components/MarketComponents/BuySell';
+import BuySell from "@/components/MarketComponents/BuySell";
 import OrderLogs from "@/components/MarketComponents/OrderLogs";
-import RecentTrades from '@/components/MarketComponents/RecentTrades';
+import RecentTrades from "@/components/MarketComponents/RecentTrades";
 import OrderBook from "@/components/MarketComponents/OrderBook";
+import Selector from "@/components/MarketComponents/SelectorComponent";
 
 export default function Market() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 p-4">
-      <div className="lg:col-span-9 order-1 lg:order-1">
+     <div className="col-span-1 lg:col-span-12 order-1">
+        <Selector />
+      </div>
+      <div className="col-span-1 lg:col-span-9 order-2">
         <TradingChart />
       </div>
-      <div className="lg:col-span-3 order-2 lg:order-2">
-        <Pairs />
-      </div>
-      <div className="lg:col-span-3 order-3 lg:order-3">
-        <BuySell />
-      </div>
-      <div className="lg:col-span-9 order-4 lg:order-4">
-        <RecentTrades />
-      </div>
-      <div className="lg:col-span-3 order-5 lg:order-5">
+      <div className="col-span-1 lg:col-span-3 order-3">
         <OrderBook />
       </div>
-      <div className="lg:col-span-9 order-6 lg:order-6">
+      <div className="col-span-1 lg:col-span-3 order-4">
+        <BuySell />
+      </div>
+      <div className="col-span-1 lg:col-span-9 order-5">
+        <RecentTrades />
+      </div>
+      <div className="col-span-1 lg:col-span-9 order-7">
         <OrderLogs />
       </div>
     </div>
