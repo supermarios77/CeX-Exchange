@@ -1,7 +1,6 @@
 import React from 'react';
 import TradingChart from "@/components/MarketComponents/TradingChart";
 import Pairs from "@/components/MarketComponents/Pairs";
-import Wallet from "@/components/MarketComponents/Wallet";
 import BuySell from '@/components/MarketComponents/BuySell';
 import OrderLogs from "@/components/MarketComponents/OrderLogs";
 import RecentTrades from '@/components/MarketComponents/RecentTrades';
@@ -18,7 +17,6 @@ export default function Market() {
       </div>
       <div className="lg:col-span-3 order-3 lg:order-3">
         <BuySell />
-        <Wallet />
       </div>
       <div className="lg:col-span-9 order-4 lg:order-4">
         <RecentTrades />
