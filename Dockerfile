@@ -7,11 +7,8 @@ WORKDIR /app
 # Copy the package.json and yarn.lock to install dependencies
 COPY package.json yarn.lock ./
 
-# Configure Yarn to have a longer network timeout
-RUN yarn config set network-timeout 600000
-
-# Install dependencies
-RUN yarn install --frozen-lockfile --production=false
+# Configure Yarn to have a longer network timeout and install dependencies
+RUN yarn config set network-timeout 600000 && yarn install --frozen-lockfile
 
 # Copy the rest of the application code
 COPY . .
@@ -33,11 +30,11 @@ COPY --from=builder /app/next.config.mjs ./
 COPY --from=builder /app/tailwind.config.ts ./
 COPY --from=builder /app/postcss.config.mjs ./
 
-# Configure Yarn to have a longer network timeout
-RUN yarn config set network-timeout 600000
-
 # Install only production dependencies
-RUN yarn install --frozen-lockfile --production=true
+RUN yarn config set network-timeout 600000 && yarn install --frozen-lockfile --production=true
+
+# Copy .env file to set environment variables
+COPY .env .env
 
 # Expose the port the app runs on
 EXPOSE 3000

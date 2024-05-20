@@ -7,7 +7,7 @@ import { jwtDecode } from "jwt-decode";
 interface AuthContextType {
   user: any;
   login: (
-    emailOrUsername: string,
+    email: string,
     password: string,
     googlecode?: string,
     captcha?: string
@@ -22,41 +22,32 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   const login = async (
-    emailOrUsername: string,
+    email: string,
     password: string,
     googlecode?: string,
     captcha?: string
   ) => {
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          emailOrUsername,
-          password,
-          googlecode,
-          captcha,
-        }),
-      });
-
-      const text = await response.text(); // Read response as text
-
-      try {
-        const data = JSON.parse(text); // Try to parse response as JSON
-
-        if (!response.ok) {
-          console.error("Login error:", data);
-          throw new Error(data.message || "Login failed");
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password, googlecode, captcha }),
         }
+      );
 
-        const decodedToken = jwtDecode(data.token);
-        setUser(decodedToken);
-      } catch (e) {
-        console.error("Response is not valid JSON:", text);
-        throw new Error("Invalid response from server");
+      const data = await response.json(); // Parse the response as JSON
+
+      if (!response.ok) {
+        console.error("Login error:", data);
+        throw new Error(data.message || "Login failed");
       }
+
+      const decodedToken = jwtDecode(data.token);
+      setUser(decodedToken);
     } catch (error) {
       console.error("Login error:", error);
       throw error;
