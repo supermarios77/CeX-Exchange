@@ -15,7 +15,7 @@ export interface CoinData {
 
 export const useCoinData = () => {
   const [coinData, setCoinData] = useState<CoinData[]>([]);
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/home-page/?format=json`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_HOMEAPI_URL}/api/v1/home-page/?format=json`;
 
   console.log("API URL:", apiUrl);
 

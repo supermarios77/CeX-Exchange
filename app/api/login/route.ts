@@ -4,15 +4,17 @@ export async function POST(request: Request) {
   const { email, password, googlecode, captcha } = await request.json();
 
   if (!email) {
+    console.error('Email is required');
     return NextResponse.json({ message: 'Email is required' }, { status: 400 });
   }
 
   if (!password) {
+    console.error('Password is required');
     return NextResponse.json({ message: 'Password is required' }, { status: 400 });
   }
 
   try {
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/login/`;
+    const apiUrl = `${process.env.NEXT_PUBLIC_HOMEAPI_URL}/api/v1/auth/login/`;
     console.log('Sending request to:', apiUrl);
     console.log('Request payload:', { email, password, googlecode, captcha });
 
@@ -31,6 +33,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: data.detail || 'Invalid credentials', error: data }, { status: 401 });
     }
 
+    console.log('API response:', data);
     return NextResponse.json({ token: data.access_token, refresh_token: data.refresh_token, user: data.user });
   } catch (error) {
     console.error('Login API error:', error);

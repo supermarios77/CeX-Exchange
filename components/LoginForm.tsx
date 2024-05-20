@@ -4,7 +4,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useAuth } from "@/contexts/AuthContext";
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
 const LoginForm = ({
   isOpen,
@@ -30,9 +30,16 @@ const LoginForm = ({
     setIsLoading(true);
     setError(null);
     try {
+      console.log("Attempting to login with:", {
+        email,
+        password,
+        googlecode,
+        captcha,
+      });
       await login(email, password, googlecode, captcha);
       onClose();
     } catch (err) {
+      console.error("Login error:", err);
       setError(err.message || "Invalid credentials. Please try again.");
     } finally {
       setIsLoading(false);
@@ -79,9 +86,9 @@ const LoginForm = ({
               </div>
               <div>
                 <Button
-                  type="button"
+                  variant="default"
                   onClick={() => setStep(2)}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md transition duration-300"
+                  className="w-full py-2"
                 >
                   Continue
                 </Button>
@@ -122,7 +129,7 @@ const LoginForm = ({
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth="2"
-                          d="M15 12m0 0c0-1.104-.896-2-2-2s-2 .896-2 2 .896 2 2 2 2-.896 2-2zm0 0c1.104 0 2-.896 2-2s-.896-2-2-2-.896 2-2 2 2 .896 2 2zm0 0c1.104 0 2-.896 2-2s-.896-2-2-2-.896 2-2 2 2 .896 2 2zM3.05 7.05a9.971 9.971 0 0014.904 0M3.05 16.95a9.971 9.971 0 0114.904 0M12 20.485a9.971 9.971 0 01-9.95-7.535M12 3.515a9.971 9.971 0 019.95 7.535"
+                          d="M15 12m0 0c0-1.104-.896-2-2-2s-2 .896-2 2 .896 2 2 2 2-.896 2-2zm0 0c1.104 0 2-.896 2-2s-.896-2-2-2-.896 2-2 2 2 .896 2 2zM3.05 7.05a9.971 9.971 0 0014.904 0M3.05 16.95a9.971 9.971 0 0114.904 0M12 20.485a9.971 9.971 0 01-9.95-7.535M12 3.515a9.971 9.971 0 019.95 7.535"
                         />
                       </svg>
                     ) : (
@@ -136,7 +143,7 @@ const LoginForm = ({
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth="2"
-                          d="M15 12m0 0c0-1.104-.896-2-2-2s-2 .896-2 2 .896 2 2 2 2-.896 2-2zm0 0c1.104 0 2-.896 2-2s-.896-2-2-2-.896 2-2 2 2 .896 2 2zm0 0c1.104 0 2-.896 2-2s-.896-2-2-2-.896 2-2 2 2 .896 2 2zM3.05 7.05a9.971 9.971 0 0014.904 0M3.05 16.95a9.971 9.971 0 0114.904 0M12 20.485a9.971 9.971 0 01-9.95-7.535M12 3.515a9.971 9.971 0 019.95 7.535"
+                          d="M15 12m0 0c0-1.104-.896-2-2-2s-2 .896-2 2 .896 2 2 2 2-.896 2-2zM3.05 7.05a9.971 9.971 0 0014.904 0M3.05 16.95a9.971 9.971 0 0114.904 0M12 20.485a9.971 9.971 0 01-9.95-7.535M12 3.515a9.971 9.971 0 019.95 7.535"
                         />
                       </svg>
                     )}
@@ -170,8 +177,9 @@ const LoginForm = ({
               <div className="space-y-4">
                 <Button
                   type="submit"
+                  variant="default"
                   disabled={isLoading || !captchaVerified}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md transition duration-300"
+                  className="w-full py-2"
                 >
                   {isLoading ? "Logging in..." : "Login"}
                 </Button>
