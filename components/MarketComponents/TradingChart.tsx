@@ -1,4 +1,5 @@
-"use client"
+/* eslint-disable react-hooks/exhaustive-deps */
+"use client";
 import React, { useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 
@@ -8,12 +9,12 @@ const TradingChart = () => {
   const widgetRef = useRef<any>(null);
 
   const loadScript = (src: string) => {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       const script = document.createElement('script');
       script.src = src;
       script.async = true;
-      script.onload = resolve;
-      script.onerror = reject;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
       document.body.appendChild(script);
     });
   };
@@ -81,12 +82,11 @@ const TradingChart = () => {
       id="tv_chart_container"
       ref={chartContainerRef}
       style={{
-        border: '1px solid #ccc',
         borderRadius: '8px',
         overflow: 'hidden',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' // Updated box shadow to grey
       }}
-      className='p-4 h-[300px] md:w-[800px] md:h-[500px] bg-white rounded-lg shadow-sm dark:bg-card col-span-1 md:col-span-2 px-2 py-3 border-b dark:border-accent flex items-center justify-between md'
+      className='p-4 h-[300px] md:w-[1250px] md:h-[700px] bg-white rounded-lg shadow-sm dark:bg-card col-span-1 md:col-span-2 px-2 py-3 border-b dark:border-accent flex items-center justify-between md'
     />
   );
 };
