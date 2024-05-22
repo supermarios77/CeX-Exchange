@@ -8,12 +8,10 @@ import { ThemeSwitch } from "./ThemeSwitch";
 import { siteConfig } from "@/config/site";
 import { MountainIcon, MenuIcon } from "@/config/icons";
 import { useAuth } from "@/contexts/AuthContext";
-import LoginForm from "@/components/LoginForm";
 
 export function NavBar() {
   const { user, logout } = useAuth();
   const [isAuthenticated, setIsAuthenticated] = useState(!!user);
-  const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
 
   useEffect(() => {
     setIsAuthenticated(!!user);
@@ -58,12 +56,9 @@ export function NavBar() {
             </>
           ) : (
             <>
-              <Button
-                variant="outline"
-                onClick={() => setIsLoginFormOpen(true)}
-              >
-                Login
-              </Button>
+              <Link href="/login">
+                <Button variant="outline">Login</Button>
+              </Link>
               <Button>Sign Up</Button>
             </>
           )}
@@ -98,12 +93,9 @@ export function NavBar() {
                   </>
                 ) : (
                   <>
-                    <Button
-                      variant="outline"
-                      onClick={() => setIsLoginFormOpen(true)}
-                    >
-                      Login
-                    </Button>
+                    <Link href="/login">
+                      <Button variant="outline">Login</Button>
+                    </Link>
                     <Button>Sign Up</Button>
                   </>
                 )}
@@ -113,10 +105,6 @@ export function NavBar() {
           </SheetContent>
         </Sheet>
       </header>
-      <LoginForm
-        isOpen={isLoginFormOpen}
-        onClose={() => setIsLoginFormOpen(false)}
-      />
     </>
   );
 }
